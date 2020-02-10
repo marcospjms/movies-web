@@ -2,7 +2,7 @@
   <div class="container-films">
     <h1>{{ title }}</h1>
     <div v-for="movie in topRatedMovies.movies" v-bind:key="movie.id">
-      <h2>{{ movie.title }} ({{ movie.vote_average }})</h2>
+      <h2>{{ movie.title }} ({{ movie.voteAverage }})</h2>
     </div>
   </div>
 </template>
