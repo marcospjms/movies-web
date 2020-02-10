@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <list-movies title="Todos filmes"/>
+    <list-movies title="Filmes mais bem avaliados no IMDB"/>
   </div>
 </template>
 
