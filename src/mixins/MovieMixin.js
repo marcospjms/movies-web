@@ -16,12 +16,20 @@ export default {
       url: topRatedMoviesUrl,
       totalPages: 10,
       currentPage: 0,
+      loading: false,
     },
   }),
   methods: {
+    hasNextPage() {
+      return this.topRatedMovies.currentPage < this.topRatedMovies.totalPages;
+    },
+    hasPreviousPage() {
+      return this.topRatedMovies.currentPage > 1;
+    },
     toNextTopRatedMoviesPage() {
+      this.topRatedMovies.loading = true;
       return new Promise((resolve, rejected) => {
-        if (this.topRatedMovies.currentPage < this.topRatedMovies.totalPages) {
+        if (this.hasNextPage()) {
           this.topRatedMovies.currentPage += 1;
           this.updateTopRatedMovies(resolve, rejected);
         }
@@ -29,8 +37,9 @@ export default {
       });
     },
     toPreviousTopRatedMoviesPage() {
+      this.topRatedMovies.loading = true;
       return new Promise((resolve, rejected) => {
-        if (this.topRatedMovies.currentPage > 1) {
+        if (this.hasPreviousPage()) {
           this.topRatedMovies.currentPage -= 1;
           this.updateTopRatedMovies(resolve, rejected);
         }
@@ -40,6 +49,7 @@ export default {
     updateTopRatedMovies(resolve, rejected) {
       this.fetchTopRatedMovies(this.topRatedMovies.currentPage).then((data) => {
         this.topRatedMovies.movies = data;
+        this.topRatedMovies.loading = false;
         resolve(this.topRatedMovies.movies);
       }).catch(rejected);
     },
