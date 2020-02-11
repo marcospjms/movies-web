@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
-import Favorites from '../views/Favorites.vue';
+import Bookmarks from '../views/Bookmarks.vue';
 
 Vue.use(VueRouter);
 
@@ -12,9 +12,9 @@ const routes = [
     component: Home,
   },
   {
-    path: '/favorites',
-    name: 'Favorites',
-    component: Favorites,
+    path: '/bookmarks',
+    name: 'Bookmarks',
+    component: Bookmarks,
   },
 ];
 

@@ -7,6 +7,7 @@ const initState = {
   allMovies: initMovies,
   pageSize: initPageSize,
   totalPages: initMovies.length / initPageSize,
+  currentPage: 1,
 };
 
 const initMutation = {
@@ -27,14 +28,15 @@ export default {
       commit('initLoading');
       commit('setMovies', allMovies.slice(initIndex, initIndex + pageSize));
       commit('finishLoading');
+      commit('setTotalPages', allMovies.length / pageSize);
     },
-    toNextTopRatedMoviesPage({ commit, dispatch, getters }) {
+    toNextMoviesPage({ commit, dispatch, getters }) {
       if (getters.hasNextPage) {
         commit('nextPage');
         dispatch('updateMovies');
       }
     },
-    toPreviousTopRatedMoviesPage({ commit, dispatch, getters }) {
+    toPreviousMoviesPage({ commit, dispatch, getters }) {
       if (getters.hasPreviousPage) {
         commit('previousPage');
         dispatch('updateMovies');
@@ -42,7 +44,7 @@ export default {
     },
     toggleMovie({ commit, dispatch, state }, movie) {
       const { allMovies } = state;
-      const index = allMovies.indexOf((m) => m.id === movie.id);
+      const index = allMovies.findIndex((m) => m.id === movie.id);
       if (index !== -1) {
         commit('removeMovie', index);
       } else {

@@ -1,17 +1,17 @@
 <template>
   <div class="container-films">
     <h1>{{ title }}</h1>
-    <button @click="toPreviousTopRatedMoviesPage"
+    <button @click="toPreviousMoviesPage"
             :class="{ disabled: !hasPreviousPage }">
       Página anterior
     </button>
-    <button @click="toNextTopRatedMoviesPage"
+    <button @click="toNextMoviesPage"
             :class="{ disabled: !hasNextPage }">
       Próxima página
     </button>
     <template v-if="!loading">
       <div v-for="movie in movies" v-bind:key="movie.id">
-        <h2>{{ movie.title }} ({{ movie.voteAverage }})</h2>
+        <h2 @click="toggleMovie(movie)">{{ movie.title }} ({{ movie.voteAverage }})</h2>
       </div>
     </template>
     <template v-if="loading">
@@ -23,7 +23,6 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'ListFilms',
@@ -32,23 +31,32 @@ export default {
       type: String,
       default: 'Lista de Filmes',
     },
+    movies: {
+      default: [],
+    },
+    hasPreviousPage: {
+      type: Boolean,
+      default: false,
+    },
+    hasNextPage: {
+      type: Boolean,
+      default: false,
+    },
+    loading: {
+      type: Boolean,
+      default: false,
+    },
   },
-  computed: {
-    ...mapState('topRatedMoviesStore', [
-      'movies',
-      'loading',
-    ]),
-    ...mapGetters('topRatedMoviesStore', [
-      'hasPreviousPage',
-      'hasNextPage',
-    ]),
-  },
-  methods: mapActions('topRatedMoviesStore', [
-    'toPreviousTopRatedMoviesPage',
-    'toNextTopRatedMoviesPage',
-  ]),
-  created() {
-    console.log(this.$store);
+  methods: {
+    toPreviousMoviesPage() {
+      this.$emit('toPreviousMoviesPage', true);
+    },
+    toNextMoviesPage() {
+      this.$emit('toNextMoviesPage', true);
+    },
+    toggleMovie(movie) {
+      this.$emit('toggleMovie', movie);
+    },
   },
 };
 </script>

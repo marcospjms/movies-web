@@ -1,7 +1,7 @@
 <template>
   <nav>
     <router-link to="/">Início</router-link> |
-    <router-link to="/favorites">Favoritos</router-link>
+    <router-link to="/bookmarks">Favoritos</router-link>
   </nav>
 </template>
 
