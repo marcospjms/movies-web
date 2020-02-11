@@ -4,7 +4,7 @@
                    :movie="selectedMovie"
                    :bookmarks="bookmarks"
                    :loading="loadingSelectedMovie"
-                   @toggleMovie="toggleMovie"
+                   @toggleBookmark="toggleBookmark"
     />
   </div>
 </template>
@@ -33,7 +33,7 @@ export default {
       'selectMovie',
     ]),
     ...mapActions('Bookmarks', [
-      'toggleMovie',
+      'toggleBookmark',
     ]),
   },
   created() {

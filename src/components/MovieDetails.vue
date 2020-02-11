@@ -3,7 +3,7 @@
     <router-link :to="'/movies/' + movie.id">
       <img :src="imageSrc" />
     </router-link>
-    <div @click="toggleMovie()"
+    <div @click="toggleBookmark()"
          :class="{ selected: isBookmark }"
          class="bookmark-btn">
       <i class="fa fa-bookmark"></i>
@@ -42,10 +42,13 @@ export default {
       type: Array,
       default: () => [],
     },
+    toWatchMovies: {
+      default: [],
+    },
   },
   methods: {
-    toggleMovie() {
-      this.$emit('toggleMovie', this.movie);
+    toggleBookmark() {
+      this.$emit('toggleBookmark', this.movie);
     },
   },
   computed: {

@@ -7,7 +7,7 @@
                :key="movie.id"
                :movie="movie"
                :bookmarks="bookmarks"
-               @toggleMovie="toggleMovie" />
+               @toggleBookmark="toggleBookmark" />
       </div>
 
       <div class="page-info">
@@ -49,6 +49,9 @@ export default {
     bookmarks: {
       default: [],
     },
+    toWatchMovies: {
+      default: [],
+    },
     hasPreviousPage: {
       type: Boolean,
       default: false,
@@ -77,8 +80,8 @@ export default {
     toNextMoviesPage() {
       this.$emit('toNextMoviesPage', true);
     },
-    toggleMovie(movie) {
-      this.$emit('toggleMovie', movie);
+    toggleBookmark(movie) {
+      this.$emit('toggleBookmark', movie);
     },
   },
 };

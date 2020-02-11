@@ -19,7 +19,7 @@ export default {
       dispatch('updateMovies');
     }
   },
-  toggleMovie({ commit, dispatch, state }, movie) {
+  toggleBookmark({ commit, dispatch, state }, movie) {
     const { allMovies } = state;
     const index = allMovies.findIndex((m) => m.id === movie.id);
     if (index !== -1) {

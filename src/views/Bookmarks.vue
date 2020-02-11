@@ -10,7 +10,7 @@
                      :totalPages="totalPages"
                      @toPreviousMoviesPage="toPreviousMoviesPage"
                      @toNextMoviesPage="toNextMoviesPage"
-                     @toggleMovie="toggleMovie"/>
+                     @toggleBookmark="toggleBookmark"/>
   </div>
 </template>
 
@@ -37,11 +37,13 @@ export default {
       'hasNextPage',
     ]),
   },
-  methods: mapActions('Bookmarks', [
-    'toPreviousMoviesPage',
-    'toNextMoviesPage',
-    'toggleMovie',
-  ]),
+  methods: {
+    ...mapActions('Bookmarks', [
+      'toPreviousMoviesPage',
+      'toNextMoviesPage',
+      'toggleBookmark',
+    ]),
+  },
 };
 
 </script>

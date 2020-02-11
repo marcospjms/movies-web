@@ -14,7 +14,7 @@
         <h2>{{ movie.title }}</h2>
       </router-link>
     </div>
-    <div @click="toggleMovie()"
+    <div @click="toggleBookmark()"
          :class="{ selected: isBookmark }"
          class="bookmark-btn">
       <i class="fa fa-bookmark"></i>
@@ -41,10 +41,13 @@ export default {
       type: Array,
       default: () => [],
     },
+    toWatchMovies: {
+      default: [],
+    },
   },
   methods: {
-    toggleMovie() {
-      this.$emit('toggleMovie', this.movie);
+    toggleBookmark() {
+      this.$emit('toggleBookmark', this.movie);
     },
   },
   computed: {
