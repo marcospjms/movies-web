@@ -1,20 +1,4 @@
-import Vue from 'vue';
-import _ from 'lodash';
-
-const apiKey = 'b4e2d45d3d03415323db46ae46bdd124';
-const imdbUrl = 'https://api.themoviedb.org/3/';
-const topRatedMoviesUrl = `${imdbUrl}movie/top_rated?api_key=${apiKey}`;
-
-const toCamelCase = (data) => _.mapKeys(data, (v, k) => _.camelCase(k));
-
-const fetchTopRatedMovies = (page = 1) => new Promise((resolve, rejected) => {
-  Vue.axios.get(`${topRatedMoviesUrl}&page=${page}`).then((data) => {
-    const camelCaseResult = toCamelCase(data.data);
-    const { totalPages } = camelCaseResult;
-    const movies = camelCaseResult.results.map(toCamelCase);
-    resolve({ totalPages, movies });
-  }).catch(rejected);
-});
+import MoviesService from '@/services/movies.service';
 
 export default {
   namespaced: true,
@@ -23,6 +7,7 @@ export default {
     totalPages: 10,
     currentPage: 0,
     loading: false,
+    moviesService: new MoviesService(),
 
   },
   getters: {
@@ -56,7 +41,7 @@ export default {
   actions: {
     updateMovies({ commit, state }) {
       return new Promise((resolve, rejected) => {
-        fetchTopRatedMovies(state.currentPage).then((result) => {
+        state.moviesService.fetchTopRatedMovies(state.currentPage).then((result) => {
           commit('setTotalPages', result.totalPages);
           commit('setMovies', result.movies);
           commit('finishLoading');
