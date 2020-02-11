@@ -5,10 +5,11 @@
     </router-link>
 
     <i :class="{ selected: isBookmark }"
+       :title="bookMarkTitle"
        @click="toggleBookmark()"
        class="fa fa-bookmark bookmark-icon"></i>
 
-    <i :class="{watched: isWatchedMovie}"
+    <i :class="{ watched: isWatchedMovie }"
        :title="watchedTitle"
        @click="toggleWatchedMovie"
        class="fa fa-check watched-movie-icon">
@@ -69,11 +70,14 @@ export default {
     isBookmark() {
       return this.bookmarks.findIndex((movie) => movie.id === this.movie.id) !== -1;
     },
+    bookMarkTitle() {
+      return this.isBookmark ? 'Favorite' : 'Not a favorite';
+    },
     isWatchedMovie() {
       return this.watchedMovies.findIndex((movie) => movie.id === this.movie.id) !== -1;
     },
     watchedTitle() {
-      return this.isWatchedMovie ? 'Watched movie' : 'Unattended movie';
+      return this.isWatchedMovie ? 'Watched movie' : 'Not a watched movie';
     },
   },
 };

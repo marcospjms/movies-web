@@ -16,6 +16,7 @@
     </div>
     <i :class="{ selected: isBookmark }"
        @click="toggleBookmark()"
+       :title="bookMarkTitle"
        class="fa fa-bookmark bookmark-icon"></i>
   </div>
 </template>
@@ -51,6 +52,9 @@ export default {
     },
     isBookmark() {
       return this.bookmarks.findIndex((movie) => movie.id === this.movie.id) !== -1;
+    },
+    bookMarkTitle() {
+      return this.isBookmark ? 'Favorite' : 'Not a favorite';
     },
   },
 };

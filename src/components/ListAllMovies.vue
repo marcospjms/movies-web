@@ -29,8 +29,6 @@
     <div v-if="loading" class="loading">
       Carregando filmes
     </div>
-
-
   </div>
 </template>
 
@@ -85,8 +83,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
+  @import '../assets/styles/variables';
+
   h1 {
-    color: #f5c518;
+    color: $active-actived-link-color;
     text-align: center;
   }
   .movies-list {

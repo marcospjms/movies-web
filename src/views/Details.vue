@@ -45,7 +45,6 @@ export default {
     ]),
   },
   created() {
-    console.log(this.$route.params.id, this.selectMovie);
     this.selectMovie(this.$route.params.id);
   },
 };

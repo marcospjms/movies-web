@@ -18,7 +18,6 @@ export default {
     state.totalPages = totalPages;
   },
   selectMovie(state, movie) {
-    console.log(movie);
     state.selectedMovie = movie;
   },
   initSelectedMovieLoading(state) {
