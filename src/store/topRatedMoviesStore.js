@@ -1,46 +1,12 @@
-import MoviesService from '@/services/movies.service';
+import MoviesService from '@/services/moviesService';
+import makeCommonMovieStore from '@/store/makeCommonMovieStore';
 
 export default {
-  namespaced: true,
-  state: {
-    movies: [],
-    totalPages: 10,
-    currentPage: 0,
-    loading: false,
-    moviesService: new MoviesService(),
-
-  },
-  getters: {
-    hasNextPage(state) {
-      return state.currentPage < state.totalPages;
-    },
-    hasPreviousPage(state) {
-      return state.currentPage > 1;
-    },
-  },
-  mutations: {
-    initLoading(state) {
-      state.loading = true;
-    },
-    finishLoading(state) {
-      state.loading = false;
-    },
-    nextPage(state) {
-      state.currentPage += 1;
-    },
-    previousPage(state) {
-      state.currentPage -= 1;
-    },
-    setMovies(state, movies) {
-      state.movies = movies;
-    },
-    setTotalPages(state, totalPages) {
-      state.totalPages = totalPages;
-    },
-  },
+  ...makeCommonMovieStore({ moviesService: new MoviesService() }),
   actions: {
     updateMovies({ commit, state }) {
       return new Promise((resolve, rejected) => {
+        commit('initLoading');
         state.moviesService.fetchTopRatedMovies(state.currentPage).then((result) => {
           commit('setTotalPages', result.totalPages);
           commit('setMovies', result.movies);
@@ -51,17 +17,18 @@ export default {
     },
     toNextTopRatedMoviesPage({ commit, dispatch, getters }) {
       if (getters.hasNextPage) {
-        commit('initLoading');
         commit('nextPage');
-        dispatch('updateMovies');
+        return dispatch('updateMovies');
       }
+      return new Promise((resolve) => resolve());
     },
     toPreviousTopRatedMoviesPage({ commit, dispatch, getters }) {
       if (getters.hasPreviousPage) {
-        commit('initLoading');
         commit('previousPage');
-        dispatch('updateMovies');
+        return dispatch('updateMovies');
       }
+
+      return new Promise((resolve) => resolve());
     },
   },
 };
