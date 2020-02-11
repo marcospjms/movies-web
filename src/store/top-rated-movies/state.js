@@ -1,5 +1,5 @@
 import state from '../movies/state';
-import MoviesService from '../../services/moviesService';
+import MoviesService from '../../services/movies';
 
 export default {
   ...state,
