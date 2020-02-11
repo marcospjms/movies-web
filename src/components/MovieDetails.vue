@@ -1,13 +1,19 @@
 <template>
-  <div class="container-film">
+  <div class="container-movie">
     <router-link :to="'/movies/' + movie.id">
       <img :src="imageSrc" />
     </router-link>
-    <div @click="toggleBookmark()"
-         :class="{ selected: isBookmark }"
-         class="bookmark-btn">
-      <i class="fa fa-bookmark"></i>
-    </div>
+
+    <i :class="{ selected: isBookmark }"
+       @click="toggleBookmark()"
+       class="fa fa-bookmark bookmark-icon"></i>
+
+    <i :class="{watched: isWatchedMovie}"
+       :title="watchedTitle"
+       @click="toggleWatchedMovie"
+       class="fa fa-check watched-movie-icon">
+    </i>
+
     <div class="movie-info">
       <div class="vote-container">
         <i class="fa fa-star"></i>
@@ -16,7 +22,9 @@
         </span>
       </div>
       <router-link :to="'/movies/' + movie.id">
-        <h2>{{ movie.title }}</h2>
+        <h2>
+          {{ movie.title }}
+        </h2>
       </router-link>
       <p>{{ movie.overview }}</p>
     </div>
@@ -42,13 +50,16 @@ export default {
       type: Array,
       default: () => [],
     },
-    toWatchMovies: {
+    watchedMovies: {
       default: [],
     },
   },
   methods: {
     toggleBookmark() {
       this.$emit('toggleBookmark', this.movie);
+    },
+    toggleWatchedMovie() {
+      this.$emit('toggleWatchedMovie', this.movie);
     },
   },
   computed: {
@@ -58,58 +69,25 @@ export default {
     isBookmark() {
       return this.bookmarks.findIndex((movie) => movie.id === this.movie.id) !== -1;
     },
+    isWatchedMovie() {
+      return this.watchedMovies.findIndex((movie) => movie.id === this.movie.id) !== -1;
+    },
+    watchedTitle() {
+      return this.isWatchedMovie ? 'Watched movie' : 'Unattended movie';
+    },
   },
 };
 </script>
 
 <style scoped lang="scss">
-  .container-film {
-    position: relative;
-    background-color: #121212;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-  }
+
+  @import '../assets/styles/icons';
+  @import '../assets/styles/movie';
+
   img {
     width: 100%;
     &:hover {
       opacity: 0.9;
-    }
-  }
-  .movie-info {
-    padding: 5px 5px;
-    a {
-      text-decoration: none;
-      color: white;
-      &:hover {
-        color: #f5c518;
-      }
-    }
-
-    h2 {
-      font-size: 1em;
-      margin: 8px 0;
-    }
-    .vote-container {
-      margin-top: 5px;
-      i {
-        color: #fff427;
-      }
-      .vote {
-        color: #9e9b9b;
-      }
-    }
-  }
-
-  .bookmark-btn {
-    position: absolute;
-    top: -5px;
-    left: 5px;
-    font-size: 2em;
-    cursor: pointer;
-    opacity: 0.7;
-    color: #d3c9c9;
-    &.selected {
-      color: #50f897;
     }
   }
 

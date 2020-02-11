@@ -1,5 +1,5 @@
 <template>
-  <div class="container-film">
+  <div class="container-movie">
     <router-link :to="'/movies/' + movie.id">
       <img :src="imageSrc" />
     </router-link>
@@ -14,11 +14,9 @@
         <h2>{{ movie.title }}</h2>
       </router-link>
     </div>
-    <div @click="toggleBookmark()"
-         :class="{ selected: isBookmark }"
-         class="bookmark-btn">
-      <i class="fa fa-bookmark"></i>
-    </div>
+    <i :class="{ selected: isBookmark }"
+       @click="toggleBookmark()"
+       class="fa fa-bookmark bookmark-icon"></i>
   </div>
 </template>
 
@@ -41,9 +39,6 @@ export default {
       type: Array,
       default: () => [],
     },
-    toWatchMovies: {
-      default: [],
-    },
   },
   methods: {
     toggleBookmark() {
@@ -62,15 +57,15 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .container-film {
-    position: relative;
+
+  @import '../assets/styles/icons';
+  @import '../assets/styles/movie';
+
+  .container-movie {
     width: 200px;
-    margin: 10px;
-    margin-left: 0;
-    background-color: #121212;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+    margin: 10px 10px 10px 0;
   }
+
   img {
     height: 300px;
     width: 200px;
@@ -78,43 +73,9 @@ export default {
       opacity: 0.9;
     }
   }
+
   .movie-info {
-    padding: 0 5px;
     height: 90px;
-    a {
-      text-decoration: none;
-      color: white;
-      &:hover {
-        color: #f5c518;
-      }
-    }
-
-    h2 {
-      font-size: 1em;
-      margin: 8px 0;
-    }
-    .vote-container {
-      margin-top: 5px;
-      i {
-        color: #fff427;
-      }
-      .vote {
-        color: #9e9b9b;
-      }
-    }
-  }
-
-  .bookmark-btn {
-    position: absolute;
-    top: -5px;
-    left: 5px;
-    font-size: 2em;
-    cursor: pointer;
-    opacity: 0.7;
-    color: #d3c9c9;
-    &.selected {
-      color: #50f897;
-    }
   }
 
 </style>

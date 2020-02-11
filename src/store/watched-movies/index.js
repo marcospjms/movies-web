@@ -1,15 +1,12 @@
-import state from '../bookmarks/state';
+import state from './state';
+import actions from './actions';
 import getters from '../bookmarks/getters';
-import actions from '../bookmarks/actions';
 import mutations from '../bookmarks/mutations';
 
 
 export default {
   namespaced: true,
-  state: {
-    ...state,
-    movies: [],
-  },
+  state,
   getters,
   actions,
   mutations,

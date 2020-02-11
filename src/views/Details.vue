@@ -3,8 +3,10 @@
     <movie-details v-if="selectedMovie"
                    :movie="selectedMovie"
                    :bookmarks="bookmarks"
+                   :watchedMovies="watchedMovies"
                    :loading="loadingSelectedMovie"
                    @toggleBookmark="toggleBookmark"
+                   @toggleWatchedMovie="toggleWatchedMovie"
     />
   </div>
 </template>
@@ -27,6 +29,9 @@ export default {
     ...mapState('Bookmarks', {
       bookmarks: (state) => state.allMovies,
     }),
+    ...mapState('WatchedMovies', {
+      watchedMovies: (state) => state.allMovies,
+    }),
   },
   methods: {
     ...mapActions('TopRatedMovies', [
@@ -34,6 +39,9 @@ export default {
     ]),
     ...mapActions('Bookmarks', [
       'toggleBookmark',
+    ]),
+    ...mapActions('WatchedMovies', [
+      'toggleWatchedMovie',
     ]),
   },
   created() {

@@ -1,5 +1,5 @@
 <template>
-  <div class="container-films">
+  <div class="container-movies">
     <h1>{{ title }}</h1>
     <template v-if="!loading">
       <div class="movies-list">
@@ -47,9 +47,6 @@ export default {
       default: [],
     },
     bookmarks: {
-      default: [],
-    },
-    toWatchMovies: {
       default: [],
     },
     hasPreviousPage: {

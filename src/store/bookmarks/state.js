@@ -1,6 +1,10 @@
 import state from '../movies/state';
 
-const allMovies = localStorage.allMovies ? JSON.parse(localStorage.allMovies) : [];
+const persistMovies = (movies) => {
+  localStorage.bookmarks = JSON.stringify(movies);
+};
+
+const allMovies = localStorage.bookmarks ? JSON.parse(localStorage.bookmarks) : [];
 const totalPages = allMovies.length / state.pageSize;
 const currentPage = 1;
 
@@ -10,4 +14,5 @@ export default {
   allMovies,
   totalPages,
   currentPage,
+  persistMovies,
 };
