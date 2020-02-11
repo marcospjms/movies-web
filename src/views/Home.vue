@@ -1,17 +1,17 @@
 <template>
   <div class="home">
-    <list-movies title="Filmes mais bem avaliados no IMDB"/>
+    <list-all-movies title="Filmes mais bem avaliados no IMDB"/>
   </div>
 </template>
 
 <script>
 
-import ListMovies from '@/components/ListMovies.vue';
+import ListAllMovies from '@/components/ListAllMovies.vue';
 
 export default {
   name: 'Home',
   components: {
-    ListMovies,
+    ListAllMovies,
   },
 };
 </script>
