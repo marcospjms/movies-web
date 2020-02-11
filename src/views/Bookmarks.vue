@@ -23,16 +23,16 @@ export default {
     ListAllMovies,
   },
   computed: {
-    ...mapState('bookmarksStore', [
+    ...mapState('Bookmarks', [
       'movies',
       'loading',
     ]),
-    ...mapGetters('bookmarksStore', [
+    ...mapGetters('Bookmarks', [
       'hasPreviousPage',
       'hasNextPage',
     ]),
   },
-  methods: mapActions('bookmarksStore', [
+  methods: mapActions('Bookmarks', [
     'toPreviousMoviesPage',
     'toNextMoviesPage',
     'toggleMovie',

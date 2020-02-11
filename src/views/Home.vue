@@ -5,8 +5,8 @@
                      :hasPreviousPage="hasPreviousPage"
                      :hasNextPage="hasNextPage"
                      :title="'Filmes mais bem avaliados no IMDB'"
-                     @toPreviousMoviesPage="toPreviousTopRatedMoviesPage"
-                     @toNextMoviesPage="toNextTopRatedMoviesPage"
+                     @toPreviousMoviesPage="toPreviousMoviesPage"
+                     @toNextMoviesPage="toNextMoviesPage"
                      @toggleMovie="toggleMovie"/>
   </div>
 </template>
@@ -22,21 +22,21 @@ export default {
     ListAllMovies,
   },
   computed: {
-    ...mapState('topRatedMoviesStore', [
+    ...mapState('TopRatedMovies', [
       'movies',
       'loading',
     ]),
-    ...mapGetters('topRatedMoviesStore', [
+    ...mapGetters('TopRatedMovies', [
       'hasPreviousPage',
       'hasNextPage',
     ]),
   },
   methods: {
-    ...mapActions('topRatedMoviesStore', [
-      'toPreviousTopRatedMoviesPage',
-      'toNextTopRatedMoviesPage',
+    ...mapActions('TopRatedMovies', [
+      'toPreviousMoviesPage',
+      'toNextMoviesPage',
     ]),
-    ...mapActions('bookmarksStore', [
+    ...mapActions('Bookmarks', [
       'toggleMovie',
     ]),
   },

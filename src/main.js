@@ -15,5 +15,5 @@ new Vue({
   render: (h) => h(App),
 }).$mount('#app');
 
-store.dispatch('topRatedMoviesStore/toNextTopRatedMoviesPage');
-store.dispatch('bookmarksStore/updateMovies');
+store.dispatch('TopRatedMovies/toNextMoviesPage');
+store.dispatch('Bookmarks/updateMovies');

@@ -1,13 +1,13 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import topRatedMoviesStore from './topRatedMoviesStore';
-import bookmarksStore from './bookmarksStore';
+import TopRatedMovies from './top-rated-movies';
+import Bookmarks from './bookmarks';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   modules: {
-    topRatedMoviesStore,
-    bookmarksStore,
+    TopRatedMovies,
+    Bookmarks,
   },
 });
