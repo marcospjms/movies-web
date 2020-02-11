@@ -11,7 +11,7 @@
     </button>
     <template v-if="!loading">
       <div v-for="movie in movies" v-bind:key="movie.id">
-        <h2 @click="toggleMovie(movie)">{{ movie.title }} ({{ movie.voteAverage }})</h2>
+        <movie :movie="movie" @toggleMovie="toggleMovie" />
       </div>
     </template>
     <template v-if="loading">
@@ -25,7 +25,7 @@
 <script>
 
 export default {
-  name: 'ListFilms',
+  name: 'ListAllFilms',
   props: {
     title: {
       type: String,
