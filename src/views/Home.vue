@@ -4,7 +4,7 @@
                      :loading="loading"
                      :hasPreviousPage="hasPreviousPage"
                      :hasNextPage="hasNextPage"
-                     :title="'Filmes mais bem avaliados no IMDB'"
+                     :title="'Top Rated Movies by IMDB'"
                      @toPreviousMoviesPage="toPreviousMoviesPage"
                      @toNextMoviesPage="toNextMoviesPage"
                      @toggleMovie="toggleMovie"/>

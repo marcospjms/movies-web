@@ -1,24 +1,27 @@
 <template>
   <div class="container-films">
     <h1>{{ title }}</h1>
-    <button @click="toPreviousMoviesPage"
-            :class="{ disabled: !hasPreviousPage }">
-      Página anterior
-    </button>
-    <button @click="toNextMoviesPage"
-            :class="{ disabled: !hasNextPage }">
-      Próxima página
-    </button>
-    <template v-if="!loading">
-      <div v-for="movie in movies" v-bind:key="movie.id">
-        <movie :movie="movie" @toggleMovie="toggleMovie" />
-      </div>
-    </template>
-    <template v-if="loading">
-      <div class="loading">
-        Carregando filmes
-      </div>
-    </template>
+    <div v-if="!loading" class="movies-list">
+      <movie v-for="movie in movies"
+             :key="movie.id"
+             :movie="movie"
+             @toggleMovie="toggleMovie" />
+    </div>
+
+    <div v-if="loading" class="loading">
+      Carregando filmes
+    </div>
+
+    <div class="navigations-btns">
+      <button @click="toPreviousMoviesPage"
+              :class="{ disabled: !hasPreviousPage }">
+        Página anterior
+      </button>
+      <button @click="toNextMoviesPage"
+              :class="{ disabled: !hasNextPage }">
+        Próxima página
+      </button>
+    </div>
   </div>
 </template>
 
@@ -62,4 +65,30 @@ export default {
 </script>
 
 <style scoped lang="scss">
+  h1 {
+    color: #f5c518;
+    text-align: center;
+  }
+  .movies-list {
+    margin: 10px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .navigations-btns {
+    text-align: center;
+    button {
+      border-radius: 15px;
+      margin: 5px;
+      cursor: pointer;
+      padding: 10px;
+      outline: none;
+
+      &.disabled {
+        opacity: 0.2;
+        cursor: initial;
+      }
+    }
+  }
 </style>

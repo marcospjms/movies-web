@@ -17,3 +17,15 @@ export default {
 };
 
 </script>
+
+<style lang="scss">
+  body {
+    background-color: #313030;
+    color: white;
+    font-family: Roboto, Helvetica, Arial, sans-serif;;
+  }
+  .app-container {
+    max-width: 900px;
+    margin: auto;
+  }
+</style>
