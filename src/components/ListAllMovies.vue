@@ -104,6 +104,7 @@ export default {
   .navigations-btns {
     text-align: center;
     button {
+      background-color: #ffffff;
       border-radius: 15px;
       margin: 5px;
       cursor: pointer;
