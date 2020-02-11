@@ -23,38 +23,14 @@
 
 <script>
 
+import MovieMixin from '../mixins/movie';
+
 export default {
   name: 'Movie',
-  props: {
-    movie: {
-      type: Object,
-      default() {
-        return {};
-      },
-    },
-    loading: {
-      type: Boolean,
-      default: false,
-    },
-    bookmarks: {
-      type: Array,
-      default: () => [],
-    },
-  },
-  methods: {
-    toggleBookmark() {
-      this.$emit('toggleBookmark', this.movie);
-    },
-  },
+  mixins: [MovieMixin],
   computed: {
     imageSrc() {
       return `https://image.tmdb.org/t/p/w200/${this.movie.posterPath}`;
-    },
-    isBookmark() {
-      return this.bookmarks.findIndex((movie) => movie.id === this.movie.id) !== -1;
-    },
-    bookMarkTitle() {
-      return this.isBookmark ? 'Favorite' : 'Not a favorite';
     },
   },
 };
