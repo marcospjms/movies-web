@@ -1,6 +1,6 @@
 <template>
   <nav>
-    <router-link to="/">Home</router-link> |
+    <router-link to="/">Home</router-link>
     <router-link to="/bookmarks">Bookmarks</router-link>
   </nav>
 </template>
@@ -16,13 +16,15 @@ export default {
 nav {
   padding: 30px;
   text-align: center;
-
   a {
+    margin: 0px 10px;
     font-weight: bold;
-    color: #2c3e50;
+    color: white;
+    text-decoration: none;
+    border-bottom: 2.5px solid white;
 
     &.router-link-exact-active {
-      color: #42b983;
+      border-bottom-color: #42b983;
     }
   }
 }
