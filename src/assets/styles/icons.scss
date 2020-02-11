@@ -1,28 +1,23 @@
 @import "./variables";
 
-i.bookmark-icon {
+i.bookmark-icon, i.watched-movie-icon {
   position: absolute;
-  top: -2px;
-  left: 5px;
-  font-size: 2em;
   cursor: pointer;
+  font-size: 2em;
   opacity: 0.7;
   color: $icon-disabled-color;
-  &.selected {
+
+  &.selected, &.watched {
     color: $icon-enabled-color;
   }
 }
 
+i.bookmark-icon {
+  top: -2px;
+  left: 5px;
+}
+
 i.watched-movie-icon {
-  position: absolute;
   top: -5px;
   left: 35px;
-  opacity: 0.4;
-  font-size: 2em;
-  color: $icon-disabled-color;
-  cursor: pointer;
-  &.watched {
-    opacity: 1;
-    color: $icon-enabled-color;
-  }
 }
