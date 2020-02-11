@@ -5,4 +5,6 @@ export default {
   pageSize: 20,
   currentPage: 0,
   loading: false,
+  selectedMovie: undefined,
+  loadingSelectedMovie: false,
 };

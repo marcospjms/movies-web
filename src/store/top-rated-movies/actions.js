@@ -25,4 +25,12 @@ export default {
 
     return new Promise((resolve) => resolve());
   },
+  selectMovie({ commit, state }, movieId) {
+    commit('selectMovie', undefined);
+    commit('initSelectedMovieLoading');
+    return state.moviesService.fetchMovieDetails(movieId).then((data) => {
+      commit('selectMovie', data);
+      commit('finishSelectedMovieLoading');
+    });
+  },
 };

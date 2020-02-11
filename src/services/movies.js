@@ -16,4 +16,10 @@ export default class MoviesService {
       resolve({ totalPages, movies });
     }).catch(rejected);
   });
+
+  fetchMovieDetails = (id) => new Promise((resolve, rejected) => {
+    Vue.axios.get(`${imdbUrl}movie/${id}?api_key=${apiKey}`).then((data) => {
+      resolve(toCamelCase(data.data));
+    }).catch(rejected);
+  });
 }

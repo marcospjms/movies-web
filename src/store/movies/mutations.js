@@ -17,4 +17,14 @@ export default {
   setTotalPages(state, totalPages) {
     state.totalPages = totalPages;
   },
+  selectMovie(state, movie) {
+    console.log(movie);
+    state.selectedMovie = movie;
+  },
+  initSelectedMovieLoading(state) {
+    state.loadingSelectedMovie = true;
+  },
+  finishSelectedMovieLoading(state) {
+    state.loadingSelectedMovie = false;
+  },
 };
