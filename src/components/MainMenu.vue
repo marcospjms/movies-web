@@ -13,6 +13,8 @@ export default {
 
 <style scoped lang="scss">
 
+@import '../assets/styles/variables';
+
 nav {
   padding: 30px;
   text-align: center;
@@ -24,7 +26,7 @@ nav {
     border-bottom: 2.5px solid white;
 
     &.router-link-exact-active {
-      border-bottom-color: #42b983;
+      border-bottom-color: $active-menu-color;
     }
   }
 }
