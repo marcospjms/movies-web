@@ -1,27 +1,36 @@
 <template>
   <div class="container-films">
     <h1>{{ title }}</h1>
-    <div v-if="!loading" class="movies-list">
-      <movie v-for="movie in movies"
-             :key="movie.id"
-             :movie="movie"
-             @toggleMovie="toggleMovie" />
-    </div>
+    <template v-if="!loading">
+      <div class="movies-list">
+        <movie v-for="movie in movies"
+               :key="movie.id"
+               :movie="movie"
+               :bookmarks="bookmarks"
+               @toggleMovie="toggleMovie" />
+      </div>
 
+      <div class="page-info">
+        ({{ currentPage }} / {{ totalPages }})
+      </div>
+
+      <div class="navigations-btns">
+        <button @click="toPreviousMoviesPage"
+                :class="{ disabled: !hasPreviousPage }">
+          Página anterior
+        </button>
+        <button @click="toNextMoviesPage"
+                :class="{ disabled: !hasNextPage }">
+          Próxima página
+        </button>
+      </div>
+
+    </template>
     <div v-if="loading" class="loading">
       Carregando filmes
     </div>
 
-    <div class="navigations-btns">
-      <button @click="toPreviousMoviesPage"
-              :class="{ disabled: !hasPreviousPage }">
-        Página anterior
-      </button>
-      <button @click="toNextMoviesPage"
-              :class="{ disabled: !hasNextPage }">
-        Próxima página
-      </button>
-    </div>
+
   </div>
 </template>
 
@@ -37,6 +46,9 @@ export default {
     movies: {
       default: [],
     },
+    bookmarks: {
+      default: [],
+    },
     hasPreviousPage: {
       type: Boolean,
       default: false,
@@ -48,6 +60,14 @@ export default {
     loading: {
       type: Boolean,
       default: false,
+    },
+    currentPage: {
+      type: Number,
+      default: 0,
+    },
+    totalPages: {
+      type: Number,
+      default: 0,
     },
   },
   methods: {
@@ -74,6 +94,11 @@ export default {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+  }
+
+  .page-info {
+    text-align: center;
+    margin: 10px 0;
   }
 
   .navigations-btns {

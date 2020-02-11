@@ -1,10 +1,13 @@
 <template>
   <div class="home">
     <list-all-movies :movies="movies"
+                     :bookmarks="movies"
                      :loading="loading"
                      :hasPreviousPage="hasPreviousPage"
                      :hasNextPage="hasNextPage"
-                     :title="'Filmes mais bem avaliados no IMDB'"
+                     :title="'Bookmarks'"
+                     :currentPage="currentPage"
+                     :totalPages="totalPages"
                      @toPreviousMoviesPage="toPreviousMoviesPage"
                      @toNextMoviesPage="toNextMoviesPage"
                      @toggleMovie="toggleMovie"/>
@@ -26,6 +29,8 @@ export default {
     ...mapState('Bookmarks', [
       'movies',
       'loading',
+      'currentPage',
+      'totalPages',
     ]),
     ...mapGetters('Bookmarks', [
       'hasPreviousPage',

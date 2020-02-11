@@ -19,6 +19,8 @@ export default {
 </script>
 
 <style lang="scss">
+  $fa-font-path : "~font-awesome/fonts" !default;
+  @import "~font-awesome/scss/font-awesome";
   body {
     background-color: #313030;
     color: white;

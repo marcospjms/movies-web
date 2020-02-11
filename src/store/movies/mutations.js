@@ -12,7 +12,6 @@ export default {
     state.currentPage -= 1;
   },
   setMovies(state, movies) {
-    console.log(movies);
     state.movies = movies;
   },
   setTotalPages(state, totalPages) {

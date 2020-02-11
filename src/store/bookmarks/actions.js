@@ -5,7 +5,7 @@ export default {
     commit('initLoading');
     commit('setMovies', allMovies.slice(initIndex, initIndex + pageSize));
     commit('finishLoading');
-    commit('setTotalPages', allMovies.length / pageSize);
+    commit('setTotalPages', Math.ceil(allMovies.length / pageSize));
   },
   toNextMoviesPage({ commit, dispatch, getters }) {
     if (getters.hasNextPage) {
