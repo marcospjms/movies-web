@@ -6,6 +6,7 @@ const currentPage = 1;
 
 export default {
   ...state,
+  movies: [],
   allMovies,
   totalPages,
   currentPage,

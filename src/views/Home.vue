@@ -5,7 +5,7 @@
                      :loading="loading"
                      :hasPreviousPage="hasPreviousPage"
                      :hasNextPage="hasNextPage"
-                     :title="'Top Rated Movies by IMDB'"
+                     :title="'Top Rated Movies'"
                      :currentPage="currentPage"
                      :totalPages="totalPages"
                      @toPreviousMoviesPage="toPreviousMoviesPage"
