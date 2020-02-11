@@ -16,3 +16,4 @@ new Vue({
 }).$mount('#app');
 
 store.dispatch('topRatedMoviesStore/toNextTopRatedMoviesPage');
+store.dispatch('bookmarksStore/updateMovies');

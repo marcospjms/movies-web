@@ -1,7 +1,7 @@
 
 import makeCommonMovieStore from '@/store/makeCommonMovieStore';
 
-const initMovies = [];
+const initMovies = localStorage.allMovies ? JSON.parse(localStorage.allMovies) : [];
 const initPageSize = 20;
 const initState = {
   allMovies: initMovies,
@@ -10,12 +10,18 @@ const initState = {
   currentPage: 1,
 };
 
+const persistMovies = (movies) => {
+  localStorage.allMovies = JSON.stringify(movies);
+};
+
 const initMutation = {
   addMovie(state, movie) {
     state.allMovies.push(movie);
+    persistMovies(state.allMovies);
   },
   removeMovie(state, index) {
     state.allMovies.splice(index, 1);
+    persistMovies(state.allMovies);
   },
 };
 
