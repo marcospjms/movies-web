@@ -27,7 +27,7 @@
 
     </template>
     <div v-if="loading" class="loading">
-      Carregando filmes
+      Carregando filmes...
     </div>
   </div>
 </template>
@@ -84,6 +84,7 @@ export default {
 
 <style scoped lang="scss">
   @import '../assets/styles/variables';
+  @import '../assets/styles/loading';
 
   h1 {
     color: $active-actived-link-color;

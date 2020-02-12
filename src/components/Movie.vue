@@ -30,7 +30,13 @@ export default {
   mixins: [MovieMixin],
   computed: {
     imageSrc() {
-      return `https://image.tmdb.org/t/p/w200/${this.movie.posterPath}`;
+      return `https://image.tmdb.org/t/p/w${this.imageWidth}${this.movie.posterPath}`;
+    },
+    imageWidth() {
+      if (this.windowWidth > 645) {
+        return 200;
+      }
+      return 300;
     },
   },
 };
@@ -56,6 +62,16 @@ export default {
 
   .movie-info {
     height: 90px;
+  }
+
+  @media (max-width: 645px) {
+    .container-movie, img {
+      width: 300px;
+    }
+
+    img {
+      height: 450px;
+    }
   }
 
 </style>

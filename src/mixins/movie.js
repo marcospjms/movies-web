@@ -1,4 +1,7 @@
 export default {
+  state: {
+    windowWidth: document.documentElement.clientWidth,
+  },
   props: {
     movie: {
       type: Object,
@@ -15,7 +18,7 @@ export default {
       default: () => [],
     },
     watchedMovies: {
-      default: [],
+      default: () => [],
     },
   },
   methods: {
@@ -24,6 +27,9 @@ export default {
     },
     toggleWatchedMovie() {
       this.$emit('toggleWatchedMovie', this.movie);
+    },
+    handleResize() {
+      this.windowWidth = document.documentElement.clientWidth;
     },
   },
   computed: {
@@ -42,5 +48,11 @@ export default {
     watchedTitle() {
       return this.isWatchedMovie ? 'Watched movie' : 'Not a watched movie';
     },
+  },
+  created() {
+    window.addEventListener('resize', this.handleResize);
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.handleResize);
   },
 };
